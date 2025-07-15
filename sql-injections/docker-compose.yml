@@ -1,0 +1,54 @@
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=ctf_db
+      - DB_USER=ctf_user
+      - DB_PASS=ctf_password
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - ctf-network
+
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=ctf_db
+      - MYSQL_USER=ctf_user
+      - MYSQL_PASSWORD=ctf_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      - ctf-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=ctf_user
+      - PMA_PASSWORD=ctf_password
+    depends_on:
+      - db
+    networks:
+      - ctf-network
+
+volumes:
+  mysql_data:
+
+networks:
+  ctf-network:
+    driver: bridge

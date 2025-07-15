@@ -1,0 +1,9 @@
+{
+  "name": "prototype-challenge",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.21.2",
+    "lodash": "^4.17.21"
+  }
+}

@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+  # Challenge 1: Modern XSS & CSP Bypass
+  xss-challenge:
+    build: ./xss-challenge
+    ports:
+      - "3001:3000"
+    environment:
+      - FLAG_XSS=CTF{dom_xss_csp_bypass_2025}
+    networks:
+      - ctf-network
+
+  # Challenge 2: JWT & Authorization Bypass
+  jwt-challenge:
+    build: ./jwt-challenge
+    ports:
+      - "3002:3000"
+    environment:
+      - FLAG_JWT=CTF{jwt_none_alg_bypass_admin}
+      - JWT_SECRET=super_secret_key_2025
+    networks:
+      - ctf-network
+
+  # Challenge 3: GraphQL Introspection & Injection
+  # graphql-challenge:
+  #   build: ./graphql-challenge
+  #   ports:
+  #     - "3003:4000"
+  #   environment:
+  #     - FLAG_GRAPHQL=CTF{graphql_introspection_batching}
+  #     - POSTGRES_HOST=postgres
+  #     - POSTGRES_DB=ctf_db
+  #     - POSTGRES_USER=ctf_user
+  #     - POSTGRES_PASSWORD=ctf_password
+  #   networks:
+  #     - ctf-network
+
+  # Challenge 4: SSRF & Cloud Metadata
+  ssrf-challenge:
+    build: ./ssrf-challenge
+    ports:
+      - "3004:3000"
+    environment:
+      - FLAG_SSRF=CTF{ssrf_cloud_metadata_access}
+      - INTERNAL_FLAG=internal_service_flag
+    networks:
+      - ctf-network
+
+  # Challenge 5: Prototype Pollution
+  prototype-challenge:
+    build: ./prototype-challenge
+    ports:
+      - "3005:3000"
+    environment:
+      - FLAG_PROTOTYPE=CTF{prototype_pollution_rce}
+    networks:
+      - ctf-network
+
+  # #Challenge 6: Deserialization Attack
+  # deserialization-challenge:
+  #   build: ./deserialization-challenge
+  #   ports:
+  #     - "3006:3000"
+  #   environment:
+  #     - FLAG_DESER=CTF{nodejs_deserialization_rce}
+  #   networks:
+  #     - ctf-network
+
+  # Challenge 7: Race Condition
+  race-challenge:
+    build: ./race-challenge
+    ports:
+      - "3007:3000"
+    environment:
+      - FLAG_RACE=CTF{race_condition_balance_exploit}
+      - REDIS_HOST=redis
+    networks:
+      - ctf-network
+
+  # Challenge 8: HTTP Request Smuggling
+  # smuggling-challenge:
+  #   build: ./smuggling-challenge
+  #   ports:
+  #     - "3008:3000"
+  #   environment:
+  #     - FLAG_SMUGGLING=CTF{http_request_smuggling_te_cl}
+  #   networks:
+  #     - ctf-network
+
+  # Support Services
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=ctf_db
+      - POSTGRES_USER=ctf_user
+      - POSTGRES_PASSWORD=ctf_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ctf-network
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - ctf-network
+
+  # CTF Dashboard
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "3000:3000"
+    depends_on:
+      - xss-challenge
+      - jwt-challenge
+      # - graphql-challenge
+      - ssrf-challenge
+      - prototype-challenge
+      # - deserialization-challenge
+      - race-challenge
+      # - smuggling-challenge
+    networks:
+      - ctf-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  ctf-network:
+    driver: bridge

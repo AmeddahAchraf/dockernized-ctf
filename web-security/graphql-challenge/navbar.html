@@ -1,0 +1,104 @@
+<!-- navbar.html -->
+<style>
+  /* Navigation Bar Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .navbar {
+    background: #000;
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .navbar-brand .ctf-text {
+    color: #ff6b35;
+  }
+
+  .navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  .navbar-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+
+  .navbar-nav a:hover {
+    background-color: #333;
+  }
+
+  .navbar-nav a.active {
+    background-color: #ff6b35;
+  }
+
+  /* Main Content Styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 80px; /* Account for fixed navbar */
+    background: #f5f5f5;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    color: #000;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #666;
+    line-height: 1.6;
+  }
+</style>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="/" class="navbar-brand">
+      EGYM <span class="ctf-text">Tech Summit CTF</span>
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="/" class="nav-home">Home</a></li>
+      <li><a href="/challenges" class="nav-challenges">Challenges</a></li>
+    </ul>
+  </div>
+</nav>

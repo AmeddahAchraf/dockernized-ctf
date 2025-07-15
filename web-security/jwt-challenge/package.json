@@ -1,0 +1,31 @@
+{
+  "name": "jwt-challenge",
+  "version": "1.0.0",
+  "description": "JWT Security Challenge - Educational application demonstrating JWT vulnerabilities",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "jwt",
+    "security",
+    "challenge",
+    "authentication",
+    "express",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

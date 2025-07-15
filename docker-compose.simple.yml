@@ -1,0 +1,16 @@
+
+version: '3.7'
+
+services:
+  ctfd:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////var/CTFd/CTFd.db
+      - UPLOAD_FOLDER=/var/uploads
+      - SECRET_KEY=your-secret-key-change-this
+    volumes:
+      - ./data:/var/CTFd:Z
+      - ./data/uploads:/var/uploads:Z
+    restart: unless-stopped
