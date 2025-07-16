@@ -209,8 +209,8 @@ def setup():
    <div class="col-md-6 offset-md-3">
   <img class="w-100 mx-auto d-block" style="max-width: 500px; padding: 50px; padding-top: 14vh;" src="{default_ctf_banner_location}" alt="CTF Platform Banner" />
   <h3 class="text-center">
-    <p>Welcome to Our First EGYM CTF!</p>
-    <p>A <strong>Capture The Flag (CTF)</strong> is a cybersecurity competition where participants solve challenges to find hidden "flags" (secret strings) by exploiting vulnerabilities, cracking codes, or analyzing systems. This platform, powered by <a href="https://ctfd.io">ctfd.io</a>, offers hands-on challenges to sharpen your skills in web security, cryptography, reverse engineering, and more.</p>
+    <p>Welcome to our First EGYM CTF!</p>
+    <p>A <strong>Capture The Flag (CTF)</strong> is a cybersecurity competition where you will solve challenges to find hidden "flags" (secret strings) by exploiting vulnerabilities, cracking codes, or analyzing systems</p>
   </h3>
   <h4 class="text-center">
     <p><strong>Getting Started:</strong></p>
